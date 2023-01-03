@@ -1,0 +1,22 @@
+<div class="card my-5">
+  <div class="card-body" style="text-align: center;">
+    <form (ngSubmit)="onSubmit()" #encuestaForm="ngForm">
+      <div class="form-group" style="margin-left: 20%; margin-right: 20%;">
+        <label for="generosMusicales">Estilo Musical </label><br>
+        <select (blur)="validaciones()" style="text-align: center;" placeholder="Elige una opción..." id='generos' name='generosMusicales' [(ngModel)]="resultado.genero" #generos="ngModel">
+          <option *ngFor="let item of listaGeneros" [value]="item.nombre">
+            {{item.nombre}}
+          </option>
+        </select>
+        <div *ngIf="hayErrorGenero" id="alertaGenero" class="alert alert-danger">Debes elegir un género!</div>
+      </div>
+      <div class="form-group" style="margin-left: 20%; margin-right: 20%;">
+        <label for="email">Tu e-mail</label>
+        <input type="text" (blur)="validaciones()" style="text-align: center;" [(ngModel)]="resultado.email" class="form-control" id="email" name="email" placeholder="Ingresa tu correo electrónico" required #email="ngModel">
+        <div *ngIf="hayErrorEmail" id="alertaEmail" class="alert alert-danger">Debes ingresar tu correo!</div>
+      </div>
+      <button class="button-89" type="submit" [disabled]="hayErrorEmail"
+        >Terminar Encuesta</button>
+    </form>
+  </div>
+</div>
